@@ -1,14 +1,20 @@
-import React, { useState, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
-import text from '../art_assets/partner.png';
+"use client";
 
-const Login: React.FC = () => {
+import React, { useState, FormEvent } from 'react';
+import { useRouter } from 'next/navigation';
+// import text from '../art_assets/partner.png';
+
+type AppProps = {
+    route: string;
+}
+
+const Login: React.FC<AppProps> = ({route}) => {
     const [isRegistering, setIsRegistering] = useState<boolean>(false);
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        navigate('/journal');
+        router.push(route);
     };
 
     const toggleRegister = (): void => {
@@ -19,11 +25,11 @@ const Login: React.FC = () => {
         <div className='font-vango w-3/4'>
             <div className="w-full bg-transparent rounded-lg dark:border dark:white dark:white justify-center">
                 <div className="p-6 space-y-4 md:space-y-3 justify-center items-center flex flex-col">
-                    <img
+                    {/* <img
                         className="h-auto w-3/4 flex p-5"
                         src={text}
                         alt="Log In"
-                    />
+                    /> */}
                     <form className="space-y-4 md:space-y-6 w-full" onSubmit={handleSubmit}>
                         {/* Email field */}
                         <div className="relative rounded-lg shadow-sm">

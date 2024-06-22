@@ -1,8 +1,7 @@
 import React from 'react';
-import Login from './LoginComponent'; // Assuming you have a component named Login
-import { useNavigate } from 'react-router-dom';
+import Login from '../component/LoginComponent'; // Assuming you have a component named Login
 
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
 const pageVariants = {
     initial: { opacity: 0 },
@@ -16,16 +15,15 @@ const pageTransition = {
     duration: 0.5
 };
 
-function StudentLoginPage() {
-    const navigate = useNavigate();
+const StudentLoginPage = () => {
     return (
-        <motion.div
-            initial="initial"
-            animate="in"
-            exit="out"
-            variants={pageVariants}
-            transition={pageTransition}
-        >
+        // <motion.div
+        //     initial="initial"
+        //     animate="in"
+        //     exit="out"
+        //     variants={pageVariants}
+        //     transition={pageTransition}
+        // >
         <div className='h-screen w-full justify-center flex flex-col'>
         <div className="h-1/2 flex flex-col px-4 py-4 justify-center">
             {/* Navbar */}
@@ -39,14 +37,14 @@ function StudentLoginPage() {
                         <div className='flex justify-center flex-col items-center'>
                         </div>
                         <text>Student</text>
-                        <Login className='w-full'/>
+                        <Login route='/student-dashboard' className='w-full'/>
                     </div>
                     <div className="flex-grow"></div> {/* Blank space below */}
                 </div>
                 </div>
         </div>
         </div>
-        </motion.div>
+        // </motion.div>
     );
 }
 
