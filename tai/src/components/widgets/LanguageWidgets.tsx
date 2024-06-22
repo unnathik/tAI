@@ -1,11 +1,11 @@
 import { useContext, useEffect, useRef, useState } from "react";
 
-import { AuthContext } from "../menu/Auth";
-import { Emotion } from "../../lib/data/emotion";
-import { LanguagePrediction } from "../../lib/data/languagePrediction";
+import { AuthContext } from "../../AuthContext";
+import { Emotion } from "@/lib/data/emotion";
+import { LanguagePrediction } from "@/lib/data/languagePrediction";
 import { TextArea } from "../inputs/TextArea";
 import { TopEmotions } from "./TopEmotions";
-import { getApiUrlWs } from "../../lib/utilities/environmentUtilities";
+import { getApiUrlWs } from "@/lib/utilities/environmentUtilities";
 
 export function LanguageWidgets() {
   const authContext = useContext(AuthContext);

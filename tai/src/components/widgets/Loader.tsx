@@ -1,6 +1,5 @@
-import { Emotion, EmotionName } from "../../lib/data/emotion";
-
-import { scaleEmotionsToRanges } from "../../lib/utilities/scalingUtilities";
+import { Emotion, EmotionName } from "@/lib/data/emotion";
+import { scaleEmotionsToRanges } from "@/lib/utilities/scalingUtilities";
 
 type LoaderProps = {
   className?: string;

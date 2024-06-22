@@ -8,7 +8,7 @@ type FaceTrackedVideoProps = {
   height: number;
 };
 
-export function FaceTrackedVideo({ className, trackedFaces, onVideoReady, width, height }: FaceTrackedVideoProps) {
+export function FaceTrackedVideo({ className, onVideoReady, width, height }: FaceTrackedVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   className = className || "";
@@ -40,35 +40,6 @@ export function FaceTrackedVideo({ className, trackedFaces, onVideoReady, width,
     canvasElement.width = videoElement.width = width;
     canvasElement.height = videoElement.height = height;
     graphics.clearRect(0, 0, canvasElement.width, canvasElement.height);
-
-    if (trackedFaces.length > 0) {
-      graphics.fillStyle = "rgb(40, 40, 40, 0.5)";
-      graphics.fillRect(0, 0, canvasElement.width, canvasElement.height);
-    }
-
-    trackedFaces.forEach(async (trackedFace: TrackedFace) => {
-      const bbox = trackedFace.boundingBox;
-      const scale = 20;
-      const b = { x: bbox.x - scale, y: bbox.y - scale, w: bbox.w + 2 * scale, h: bbox.h + 2 * scale };
-
-      graphics.beginPath();
-
-      const cx = b.x + b.w / 2;
-      const cy = b.y + b.h / 2;
-      const rx = b.w / 2;
-      const ry = b.h / 2;
-
-      graphics.lineWidth = 5;
-      graphics.strokeStyle = "rgb(250, 250, 250, 0.1)";
-      graphics.ellipse(cx, cy, rx, ry, 0, 0, 2 * Math.PI * 2);
-      graphics.stroke();
-
-      graphics.globalCompositeOperation = "destination-out";
-      graphics.fillStyle = "rgb(0, 0, 0, 1)";
-      graphics.ellipse(cx, cy, rx, ry, 0, 0, 2 * Math.PI * 2);
-      graphics.fill();
-      graphics.globalCompositeOperation = "source-over";
-    });
   }
 
   return (

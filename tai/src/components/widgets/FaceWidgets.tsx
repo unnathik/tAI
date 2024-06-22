@@ -56,6 +56,14 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
     };
   }, []);
 
+    const logEmotions = (emotions: Emotion[]) => {
+      console.log('Current emotions:', emotions);
+    };
+  
+    useEffect(() => {
+      logEmotions(emotions);
+    }, [emotions]);
+
   function connect() {
     const socket = socketRef.current;
     if (socket && socket.readyState === WebSocket.OPEN) {
@@ -239,18 +247,6 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
           width={500}
           height={375}
         />
-        {!onCalibrate && (
-          <div className="ml-10">
-            <TopEmotions emotions={emotions} />
-            <LoaderSet
-              className="mt-8 ml-5"
-              emotionNames={loaderNames}
-              emotions={emotions}
-              numLevels={numLoaderLevels}
-            />
-            <Descriptor className="mt-8" emotions={emotions} />
-          </div>
-        )}
       </div>
 
       <div className="pt-6">{status}</div>
