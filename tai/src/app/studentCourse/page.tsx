@@ -58,16 +58,22 @@ const StudentCourse = () => {
     }
 
     return (
-        <div className='h-screen w-full justify-center flex flex-col bg-teal-100'>
-            <Navbar />
-            <div className="h-5/6 flex flex-col px-4 py-4 justify-center">
-                <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white">
-                    <div className="flex-grow flex flex-row bg-four/[0.6] rounded-3xl mx-auto items-center p-4 h-[65vh]">
-                        <CourseInfoBox code={code} topicsDict={topicsDict} courseDict={courseDict} onTopicChange={handleCurrentTopic} currentTopic={currentTopic}/>
-                        <ChatWidget topic={currentTopic}/>
-                    </div>
-                </div>
+        <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
+          <Navbar student={true} />
+          <div className="h-5/6 flex flex-col px-4 py-4 justify-center items-center">
+            <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white align-center items-center">
+              <div className="flex justify-center w-full bg-four/[0.6] rounded-3xl mx-auto p-4 h-[65vh] align-center">
+                <CourseInfoBox
+                  code={code}
+                  topicsDict={topicsDict}
+                  courseDict={courseDict}
+                  onTopicChange={handleCurrentTopic}
+                  currentTopic={currentTopic}
+                />
+                <ChatWidget topic={currentTopic} />
+              </div>
             </div>
+          </div>
         </div>
     );
 };
