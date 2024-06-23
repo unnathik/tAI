@@ -14,8 +14,22 @@ const StudentProfile = () => {
   const data = {
     name: "John Doe",
     progress: {
-      labels: ["Math", "Science", "History", "Language"],
-      values: [85, 90, 78, 88]
+      Confident: {
+        labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+        values: [0.21, 0.27, 0.31, 0.35]
+      },
+      Focussed: {
+        labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+        values: [0.6, 0.65, 0.7, 0.75]
+      },
+      Curious: {
+        labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+        values: [0.5, 0.56, 0.59, 0.63]
+      },
+      Interested: {
+        labels: ["Week 1", "Week 2", "Week 3", "Week 4"],
+        values: [0.8, 0.82, 0.85, 0.88]
+      }
     },
     improvement: {
       labels: ["Math", "Science", "History", "Language"],
@@ -52,8 +66,6 @@ const StudentProfile = () => {
   const [studentData, setStudentData] = useState<any>(data);
 
   useEffect(() => {
-    // Here you can later add the logic to fetch actual data
-    // For now, we're using dummy data
     setStudentData(data);
   }, []);
 
@@ -69,7 +81,7 @@ const StudentProfile = () => {
           <div className="bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white p-4">
             <h1 className="text-2xl font-bold mb-4">{studentData.name}'s Dashboard</h1>
             <div className="mb-4">
-              <h2 className="text-xl font-semibold">Progress</h2>
+              <h2 className="text-xl font-semibold">Aggregate Statistics</h2>
               <div className="w-full">
                 <ProgressChart data={studentData.progress} />
               </div>
@@ -86,7 +98,7 @@ const StudentProfile = () => {
                 <ActivityChart data={studentData.activity} />
               </div>
             </div>
-            {studentData.progress.labels.map((subject: string, index: number) => (
+            {Object.keys(studentData.emotions).map((subject: string, index: number) => (
               <div key={index} className="mb-4">
                 <h2 className="text-xl font-semibold">{subject} Emotions</h2>
                 <div className="w-full">
