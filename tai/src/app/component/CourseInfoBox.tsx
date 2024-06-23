@@ -26,7 +26,7 @@ const CourseInfoBox: React.FC<CourseInfoBoxProps> = ({ code, topicsDict, courseD
                         <div className="block w-full px-4 py-2 text-sm text-gray-700">
                             <div className="flex flex-row w-full">
                                 <div className={`w-full py-1 flex items-center justify-center ${topic == currentTopic ? "font-bold" : ""}`}  onClick={() => onTopicChange(topic)}>{topic}</div>
-                                <Checkbox className="m-5" />
+                                <Checkbox className="m-5" checked={topic === checkedTopic} onChange={() => handleCheckboxChange(topic)} />
                             </div>
                         </div>
                     </div>

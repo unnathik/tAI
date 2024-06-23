@@ -98,22 +98,22 @@ const ChatWidget: React.FC<AppProps> = ({topic, refresh}) => {
           </div>
         ))}
       </div>}
-      <div className="chat-input p-2">
+      <div className="chat-input p-2 h-16 justify-center">
         <input
-          className="flex-1 border-2 rounded-md w-8/12"
+          className="flex-1 border-2 rounded-md h-12 w-9/12"
           type="text"
           value={input}
           onChange={handleInputChange}
           onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
           placeholder="Type a message..."
         />
-        <button className="voice-button w-1/12">
-          <FontAwesomeIcon color={isMicrophoneOn ? 'red' : 'black'} icon={faMicrophone} onClick={handleVoiceRecording} />
+        <button className="voice-button w-12 h-12 ">
+          <FontAwesomeIcon className="w-full" color={isMicrophoneOn ? 'red' : 'black'} icon={faMicrophone} onClick={handleVoiceRecording} />
         </button>
-        <button className="video-button w-1/12">
-          <FontAwesomeIcon color={isVideoOn ? 'red' : 'black'} icon={faVideo} onClick={handleVideoRecording} />
+        <button className="video-button w-12 h-12 ">
+          <FontAwesomeIcon className="w-full" color={isVideoOn ? 'red' : 'black'} icon={faVideo} onClick={handleVideoRecording} />
         </button>
-        <button className="border-0 text-white rounded-md cursor-pointer bg-sky-400 hover:bg-sky-600 w-2/12" onClick={handleSendMessage}>Send</button>
+        <button className="border-0 text-white rounded-md cursor-pointer bg-sky-400 hover:bg-sky-600 w-20 h-12" onClick={handleSendMessage}>Send</button>
       </div>
       {isVideoOn && (
         <div className="video h-100 w-full">
