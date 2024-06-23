@@ -24,20 +24,20 @@ const StudentLoginPage = () => {
         //     variants={pageVariants}
         //     transition={pageTransition}
         // >
-        <div className='h-screen w-full justify-center flex flex-col'>
+        <div className='h-screen w-full justify-center flex flex-col bg-teal-100'>
         <div className="h-1/2 flex flex-col px-4 py-4 justify-center">
             {/* Navbar */}
             {/* Main content */}
-            <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-1/3 mx-auto shadow-lg">
+            <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-1/3 mx-auto shadow-lg bg-white">
                 {/* Left: Login Component */}
-                <div className="flex-none w-full flex flex-col p-0">
+                <div className="flex-none w-full flex flex-col p-0 ">
                     <div className="flex-grow">
                     </div> {/* Blank space above */}
                     <div className='w-full mx-auto flex justify-center items-center flex-col'>
                         <div className='flex justify-center flex-col items-center'>
                         </div>
                         <text>Student</text>
-                        <Login route='/student-dashboard' className='w-full'/>
+                        <Login route='/studentDashboard' className='w-full'/>
                     </div>
                     <div className="flex-grow"></div> {/* Blank space below */}
                 </div>
