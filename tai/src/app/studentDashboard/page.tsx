@@ -8,7 +8,7 @@ const StudentDashboard = () => {
     const router = useRouter();
     return (
       <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
-        <Navbar />
+        <Navbar student={true}/>
         <div className="h-5/6 flex flex-col justify-center">
           <div className="flex-grow flex bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white justify-center items-center">
           <div className="justify-center items-center justify-center items-center">

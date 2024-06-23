@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import Login from '../component/LoginComponent'; // Assuming you have a component named Login
 
 // import { motion } from 'framer-motion';
@@ -35,7 +36,14 @@ const TeacherLoginPage = () => {
                     <div className='w-full mx-auto flex justify-center items-center flex-col'>
                         <div className='flex justify-center flex-col items-center'>
                         </div>
-                        <text>Teacher</text>
+                        <Image 
+                                src="/assets/teacher_new.png" 
+                                alt="Logo" 
+                                width={200} 
+                                height={200} 
+                                className="rounded-full" 
+                            />
+                        <h1 className="text-xl justify-center font-bold text-blue-700">tAI Teacher Login</h1>
                         <Login route='/teacherDashboard' className='w-full'/>
                     </div>
                     <div className="flex-grow"></div> {/* Blank space below */}

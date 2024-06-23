@@ -1,5 +1,6 @@
 "use client"
 import { useRouter } from 'next/navigation'; 
+import Image from 'next/image';
 // import { AnimatePresence, motion } from 'framer-motion';
 
 const InitialLoginPage = () => {
@@ -35,26 +36,37 @@ const InitialLoginPage = () => {
       //       transition={pageTransition}
       // >
         <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
-            <div className="h-1/2 flex flex-col px-4 py-4 justify-center">
-                <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-1/3 mx-auto shadow-lg bg-white">
-                    <div className="flex-none w-full flex flex-col p-0">
+            <div className="h-1/2 flex flex-col p-4 justify-center">
+                <div className="flex-grow flex p-4 bg-four rounded-3xl w-1/3 mx-auto shadow-lg bg-white">
+                    <div className="flex-none w-full flex items-center flex-col p-0">
                         <div className="flex-grow">
                             {/* Blank space above */}
                         </div>
-                        <div className='w-full mx-auto flex justify-center items-center flex-col'>
-                            <div className='w-full flex justify-around py-4'>
-                                <button
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={handleStudentNavigation}
-                                >
-                                    Student
-                                </button>
-                                <button
-                                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                    onClick={handleTeacherNavigation}
-                                >
-                                    Teacher
-                                </button>
+                        <div className='w-full mx-auto flex flex-col justify-center items-center'>
+                            <h1 className="text-xl justify-center font-bold text-blue-700">tAI</h1>
+                            <h2 className="text-med justify-center">Your Personal Teaching Assistant</h2>
+                            <Image 
+                                src="/assets/robo_transp.png" 
+                                alt="Logo" 
+                                width={350} 
+                                height={350} 
+                                className="rounded-full" 
+                            />
+                            <div className='w-full p-4'>
+                                <div className="flex justify-center space-x-4 mx-auto">
+                                    <button
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                        onClick={handleStudentNavigation}
+                                    >
+                                        Student
+                                    </button>
+                                    <button
+                                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                        onClick={handleTeacherNavigation}
+                                    >
+                                        Teacher
+                                    </button>
+                                </div>
                             </div>
                         </div>
                         <div className="flex-grow">

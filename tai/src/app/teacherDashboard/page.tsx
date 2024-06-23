@@ -72,7 +72,7 @@ const TeacherDashboard = () => {
 
   return (
     <div className="h-full bg-sky-100 ">
-      <Navbar />
+      <Navbar student={false}/>
       <div className="flex flex-col justify-center">
         <div className="flex-grow flex bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white justify-center items-center">
           <div className="justify-center items-center justify-center items-center"> 
