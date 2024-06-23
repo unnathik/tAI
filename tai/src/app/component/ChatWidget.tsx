@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMicrophone} from '@fortawesome/free-solid-svg-icons';
-import {faVideo} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faMicrophone, faVideo} from '@fortawesome/free-solid-svg-icons';
 import { VoiceProvider, useVoice } from '@humeai/voice-react';
 import ClientComponent from '@/components/widgets/ClientComponent';
 import Controls from '@/components/widgets/Controls';
