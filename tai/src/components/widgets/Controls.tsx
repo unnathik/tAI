@@ -17,7 +17,7 @@ export default function Controls({ topic }: ControlsProps) {
 
 
   const openai = new OpenAI({
-    apiKey: "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",
+    apiKey: "",
     dangerouslyAllowBrowser: true 
   });
 

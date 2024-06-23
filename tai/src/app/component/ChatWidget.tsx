@@ -86,7 +86,7 @@ const ChatWidget: React.FC<AppProps> = ({topic, refresh}) => {
     <div className="flex flex-col w-8/12 h-5/6 border-2 rounded-md overflow-hidden">
       <div className="bg-sky-400 text-white p-2.5 text-center">TA: {topic}</div>
       {isMicrophoneOn && <div className='flex flex-col flex-1 p-2.5 overflow-y-scroll'> 
-      <VoiceProvider auth={{ type: "apiKey", value: "lOJAfmzwXjazWVwGA5fsjulJjjg5Fy8Cb8di5KulEN2utaex" }} configId={configIds.get(topic)} configVersion={0}>
+      <VoiceProvider auth={{ type: "apiKey", value: "" }} configId={configIds.get(topic)} configVersion={0}>
         <Messages />
         <Controls topic={topic}/>
       </VoiceProvider>

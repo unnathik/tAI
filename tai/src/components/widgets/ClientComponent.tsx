@@ -10,7 +10,7 @@ export default function ClientComponent({
   accessToken: string;
 }) {
   return (
-    <VoiceProvider auth={{ type: "apiKey", value: "lOJAfmzwXjazWVwGA5fsjulJjjg5Fy8Cb8di5KulEN2utaex" }}>
+    <VoiceProvider auth={{ type: "apiKey", value: "" }}>
       <Messages />
       <Controls />
     </VoiceProvider>
