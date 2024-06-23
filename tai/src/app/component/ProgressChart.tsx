@@ -4,12 +4,12 @@ import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Toolti
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const ProgressChart = ({ data }: { data: any }) => {
+const SingleProgressChart = ({ data, subject }: { data: any, subject: string }) => {
   const chartData = {
     labels: data.labels,
     datasets: [
       {
-        label: 'Progress',
+        label: subject,
         data: data.values,
         backgroundColor: 'rgba(75, 192, 192, 0.6)',
         borderColor: 'rgba(75, 192, 192, 1)',
@@ -19,6 +19,18 @@ const ProgressChart = ({ data }: { data: any }) => {
   };
 
   return <Bar data={chartData} />;
+};
+
+const ProgressChart = ({ data }: { data: any }) => {
+  return (
+    <div className="grid grid-cols-2 gap-4">
+      {Object.keys(data).map((subject) => (
+        <div key={subject} className="h-64">
+          <SingleProgressChart data={data[subject]} subject={subject} />
+        </div>
+      ))}
+    </div>
+  );
 };
 
 export default ProgressChart;

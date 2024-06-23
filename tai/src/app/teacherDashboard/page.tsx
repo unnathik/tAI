@@ -54,7 +54,7 @@ const TeacherDashboard = () => {
               <div className='flex flex-row w-full h-full'>
                 {/* Spacing */}
                 {/* Left section */}
-                <div className='w-2/3 h-1/4 p-4'>
+                <div className='w-2/3 h-3/5 p-4'>
                   {/* School information card */}
                   <div className="p-4 bg-blue-200 rounded-3xl shadow-lg">
                     <div className="flex flex-col justify-center">
@@ -66,7 +66,7 @@ const TeacherDashboard = () => {
                       <p className='text-black'>Course Assignment(s): CS1331 (Intro to Object-Oriented Programming in Java).</p>
                     </div>
                   </div>
-                  <div className='p-4 pt-7'>
+                  <div className='p-4 pt-7 h-full'>
                     <div className='flex'>
                       <SlGraduation size={24} color='#6b7280'/>
                       <p className='text-gray-500 pl-2 pb-3'>Your Teaching Assistants</p>
@@ -76,7 +76,7 @@ const TeacherDashboard = () => {
                           <InputBox hint1="Create a new teaching assistant! What topic will this teaching assistant teach?" hint2="Any other instructions? Would you like your teaching assistant to abide by any rules?" attach={true} submit={true}/>
                         </div>
                       </div>
-                    <div className="flex flex-wrap justify-center">        
+                    <div className="flex flex-wrap justify-center overflow-y-auto h-full">        
                     {teachingAssistants.map((ta, index) => (
                   <Tile
                     key={index}
