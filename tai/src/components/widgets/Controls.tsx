@@ -1,12 +1,20 @@
 "use client";
 import { useVoice, VoiceReadyState } from "@humeai/voice-react";
 export default function Controls() {
-  const { connect, disconnect, readyState } = useVoice();
+  const { connect, disconnect, readyState, messages } = useVoice();
+  var userEmotions: any[] = []
 
   if (readyState === VoiceReadyState.OPEN) {
     return (
       <button
         onClick={() => {
+          messages.map((msg, index) => {
+            if (msg.type === "user_message") {
+              userEmotions.push(msg.models.prosody?.scores)
+            }
+          })
+
+          console.log(userEmotions)
           disconnect();
         }}
       >
