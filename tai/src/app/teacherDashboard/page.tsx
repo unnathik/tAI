@@ -92,16 +92,11 @@ const TeacherDashboard = () => {
               <SlGraduation size={24} color='#6b7280'/>
               <p className='text-gray-500 pl-2 pb-3'>Your Teaching Assistants</p>
             </div>
-            <div className='flex'>
-            <div>
-            <InputBox hint="Create a new teaching assistant! What topic will this teaching assistant teach?" attach={false} />
-              <InputBox hint="Any other instructions? Would you like your teaching assistant to abide by any rules?
-        " attach={true} />
-              <button className="absolute bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600">
-                <FaWandMagicSparkles className="h-5 w-5" />
-              </button>
+              <div className="">
+                <div className="w-full">
+                  <InputBox hint1="Create a new teaching assistant! What topic will this teaching assistant teach?" hint2="Any other instructions? Would you like your teaching assistant to abide by any rules?" attach={true} submit={true}/>
+                </div>
               </div>
-            </div>
             <div className="flex flex-wrap justify-center">        
             {teachingAssistants.map((ta, index) => (
           <Tile
