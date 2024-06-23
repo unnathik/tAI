@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { AiOutlinePaperClip } from 'react-icons/ai';
 import { FaWandMagicSparkles } from "react-icons/fa6";
+import { firestore } from '../firebase'
+import { collection, query, where, getDocs, setDoc, doc, updateDoc } from "firebase/firestore";
+import { HumeClient } from 'hume';
 
 interface InputBoxProps {
     hint1: string;
@@ -13,15 +16,75 @@ const InputBox: React.FC<InputBoxProps> = ({ hint1, hint2, attach, submit }) => 
   const [textValue1, setTextValue1] = useState(''); // State for the first textarea
   const [textValue2, setTextValue2] = useState(''); // State for the second textarea
 
+  const client = new HumeClient({ apiKey: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM" });
+
+  const generatePrompt = (topic: string, userInput: string) => {
+    var prompt = `
+    <role> You are a teaching assistant for college students and you are teaching them ${topic}. You will not talk about anything besides ${topic} and basic
+    greetings. Politely decline if the student wishes to talk about anything not related to ${topic} or basic greetings. 
+    Your goal is to ensure that they understand the concepts that they are being taught well by helping them engage with the content. 
+    You should encourage them to ask questions, explain their understanding of concepts, describe any areas of doubt, and explain their thought 
+    process. Then, you should evaluate their understanding of the topic and tell students if they are on the right path, and if not, 
+    steer them towards the correct understanding. These are some instructions from your professor you must abide by: ${userInput}
+    <communication_style>Use a friendly, casual, and conversational tone. Keep your language simple and easy to understand, using vocabulary 
+    suitable for students. Ask open-ended questions to encourage the student to speak more and practice their understanding of concepts.
+    <personality> You are a patient, non-judgmental, and supportive tutor. You gently correct mistakes without making the student feel 
+    self-conscious. You show genuine interest in the student's life and experiences, using them as opportunities to teach new concepts 
+    and encourage concept engagement. </personality> 
+    <techniques> - Gently correct mistakes and explain the correct concepts - Offer to teach concepts in a manner that is related to the 
+    student's interests - Ask open-ended follow-up questions to encourage the student to speak more - Use simple language and avoid complex 
+    vocabulary or idioms - Focus on one topic at a time to keep the conversation manageable for the learner - Provide positive reinforcement 
+    and encouragement </techniques>
+    <goal> The main goal is to help students learn about ${topic} through natural, engaging conversations.</goal>
+    `
+
+    return prompt
+  }
+
   const handleFileAttachment = () => {
     document.getElementById('fileInput').click(); // Triggers the file input when the paperclip button is clicked
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     console.log('Submit button clicked');
     console.log('First Textbox Value:', textValue1);
     console.log('Second Textbox Value:', textValue2);
-    // Add any additional submit logic here, such as sending data to a server
+
+    await setDoc(doc(firestore, "teaching_assistants", textValue1), {
+      title: textValue1,
+      instructions: textValue2, 
+      image: "https://static.thenounproject.com/png/2732962-200.png"
+    });
+
+    const promptJSONResponse = client.empathicVoice.prompts.createPrompt({
+      name: "teaching_assistant_prompt_" + textValue1,
+      text: generatePrompt(textValue1, textValue2)
+    })
+
+    promptJSONResponse.then(
+      async (response) => {
+        console.log(response)
+        var promptID = response?.id
+        var promptVersion = response?.version
+
+        await client.empathicVoice.configs.createConfig({
+          name: "teaching_assistant_config_" + textValue1,
+          prompt: {
+            id: promptID, 
+            version: promptVersion
+          }
+        }).then(async (response) => {
+          console.log(response.id)
+          console.log(response)
+          var configID = response.id;
+
+          console.log(configID)
+          await updateDoc(doc(firestore, "teaching_assistants", textValue1), {
+            configID: configID
+          })
+        });
+      }
+    )
   };
 
   return (

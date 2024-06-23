@@ -35,6 +35,11 @@ const StudentDashboard = () => {
                   description='Complex Analysis for Applications'
                   tag='Lecture 1'
                 />
+                <CourseBox
+                  code='CS 1331'
+                  description='Intro to Object-Oriented Programming with Java'
+                  tag='Lecture 15'
+                />
               </div>
             </div>
           </div>

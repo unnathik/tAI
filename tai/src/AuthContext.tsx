@@ -6,7 +6,7 @@ import { useStorage } from "./lib/hooks/storage";
 type ChildElement = JSX.Element | string;
 
 const AuthContext = createContext<AuthState>({
-  key: "gvHXvjuGGa4tgeY4wFkinI1XUSVLKftGlPiyYsWkGX2aRTGq",
+  key: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM",
   environment: Environment.Prod,
   unauthenticate: () => {},
   setEnvironment: (environment: Environment) => {},
@@ -25,7 +25,7 @@ type AuthProps = {
 
 function Auth({ children }: AuthProps) {
   const [auth, setAuth] = useState<AuthState>({
-    key: "gvHXvjuGGa4tgeY4wFkinI1XUSVLKftGlPiyYsWkGX2aRTGq",
+    key: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM",
     environment: Environment.Prod,
     unauthenticate: unauthenticate,
     setEnvironment: setEnvironment,
