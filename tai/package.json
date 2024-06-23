@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@humeai/voice": "^0.1.8",
+    "@humeai/voice-react": "^0.1.8",
     "firebase": "^10.12.2",
     "next": "14.2.4",
     "react": "^18",
