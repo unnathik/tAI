@@ -16,7 +16,7 @@ const InputBox: React.FC<InputBoxProps> = ({ hint1, hint2, attach, submit }) => 
   const [textValue1, setTextValue1] = useState(''); // State for the first textarea
   const [textValue2, setTextValue2] = useState(''); // State for the second textarea
 
-  const client = new HumeClient({ apiKey: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM" });
+  const client = new HumeClient({ apiKey: "lOJAfmzwXjazWVwGA5fsjulJjjg5Fy8Cb8di5KulEN2utaex" });
 
   const generatePrompt = (topic: string, userInput: string) => {
     var prompt = `
