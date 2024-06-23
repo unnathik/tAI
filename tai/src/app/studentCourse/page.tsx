@@ -9,6 +9,19 @@ import { firestore } from '../firebase';
 import { TeachingAssistant } from '../teacherDashboard/page';
 import Navbar from '../component/Navbar';
 import CourseInfoBox from '../component/CourseInfoBox';
+import { motion } from 'framer-motion';
+
+const pageVariants = {
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 }
+};
+
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.5
+};
 
 type CourseDict = {
     [key: string]: string;
@@ -98,6 +111,13 @@ const StudentCourse = () => {
     }, [refreshChat]);
 
     return (
+        <motion.div
+            initial="initial"
+            animate="in"
+            exit="out"
+            variants={pageVariants}
+            transition={pageTransition}
+        >
         <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
           <Navbar student={true} />
           <div className="h-5/6 flex flex-col justify-center items-center">
@@ -115,6 +135,7 @@ const StudentCourse = () => {
                 </div>
             </div>
         </div>
+        </motion.div>
     );
 };
 
