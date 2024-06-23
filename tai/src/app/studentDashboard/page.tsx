@@ -7,13 +7,14 @@ import Navbar from '../component/Navbar';
 const StudentDashboard = () => {
     const router = useRouter();
     return (
-      <div className='h-screen w-full justify-center flex flex-col bg-teal-100'>
-        <Navbar />
-        <div className="h-5/6 flex flex-col px-4 py-4 justify-center">
-          <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white">
-            <div className="flex-grow flex flex-row bg-four/[0.6] rounded-3xl mx-auto justify-center items-center p-4 h-[65vh]">
-              {/* <p>Student Dashboard</p> */}
-              <div className='grid grid-cols-3 gap-3'>
+      <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
+        <Navbar student={true}/>
+        <div className="h-5/6 flex flex-col justify-center">
+          <div className="flex-grow flex bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white justify-center items-center">
+          <div className="justify-center items-center justify-center items-center">
+            <h1 className="text-xl text-center justify-center font-bold mb-2 pl-2 text-blue-800">Your Courses:</h1>
+            <div className="flex justify-center">
+              <div className='grid grid-cols-3 gap-8 items-center'>
                 <CourseBox
                   code='HIST 101'
                   description='Topics in World History: Cultural History of Food in Atlantic World'
@@ -34,8 +35,14 @@ const StudentDashboard = () => {
                   description='Complex Analysis for Applications'
                   tag='Lecture 1'
                 />
+                <CourseBox
+                  code='CS 1331'
+                  description='Intro to Object-Oriented Programming with Java'
+                  tag='Lecture 15'
+                />
               </div>
             </div>
+          </div>
           </div>
         </div>
       </div>

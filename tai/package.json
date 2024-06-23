@@ -16,6 +16,8 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@humeai/voice": "^0.1.8",
     "@humeai/voice-react": "^0.1.8",
+    "@humeai/voice": "^0.1.8",
+    "@humeai/voice-react": "^0.1.8",
     "@material-tailwind/react": "^2.1.9",
     "chart.js": "^4.4.3",
     "firebase": "^10.12.2",
