@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import './ChatWidget.css';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMicrophone} from '@fortawesome/free-solid-svg-icons';
 import { VoiceProvider, useVoice } from '@humeai/voice-react';
@@ -47,23 +46,24 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
   }
 
   return (
-    <div className="chat-widget">
-      <div className="chat-header">TA: {topic}</div>
-      {isMicrophoneOn && <div className='chat-messages'> 
-      <VoiceProvider auth={{ type: "apiKey", value: "gvHXvjuGGa4tgeY4wFkinI1XUSVLKftGlPiyYsWkGX2aRTGq" }}>
+    <div className="flex flex-col w-[600px] h-[500px] ml-[200px] border-2 rounded-md overflow-hidden">
+      <div className="bg-sky-400 text-white p-2.5 text-center">TA: {topic}</div>
+      {isMicrophoneOn && <div className='flex flex-col flex-1 p-2.5 overflow-y-scroll'> 
+      <VoiceProvider auth={{ type: "apiKey", value: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM" }}>
       <Messages />
       <Controls />
     </VoiceProvider>
       </div>}
-      {!isMicrophoneOn && <div className="chat-messages">
+      {!isMicrophoneOn && <div className="flex flex-col flex-1 p-2.5 overflow-y-scroll">
         {chatMessages.map((message) => (
-          <div key={message.id} className={`chat-message ${message.sender}`}>
+          <div key={message.id} className={`mb-2.5 p-2.5 rounded-md w-3/5 ${message.sender == "user" ? "self-end bg-slate-200" : "self-start bg-slate-400"}`}>
             {message.text}
           </div>
         ))}
       </div>}
       <div className="chat-input">
         <input
+          className="flex-1 p-2.5 border-2 rounded-md mr-2.5"
           type="text"
           value={input}
           onChange={handleInputChange}
@@ -73,7 +73,7 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
         <button className="voice-button">
         <FontAwesomeIcon color={isMicrophoneOn ? 'red' : 'black'} icon={faMicrophone} onClick={handleVoiceRecording} />
         </button>
-        <button className="send-button" onClick={handleSendMessage}>Send</button>
+        <button className="border-0 py-2.5 px-5 text-white rounded-md cursor-pointer bg-sky-400 hover:bg-sky-600" onClick={handleSendMessage}>Send</button>
       </div>
     </div>
   );
