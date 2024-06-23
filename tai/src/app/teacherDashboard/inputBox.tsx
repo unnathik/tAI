@@ -4,6 +4,7 @@ import { FaWandMagicSparkles } from "react-icons/fa6";
 import { firestore } from '../firebase'
 import { collection, query, where, getDocs, setDoc, doc, updateDoc } from "firebase/firestore";
 import { HumeClient } from 'hume';
+import { PostedLanguageModelModelProvider } from 'hume/api/resources/empathicVoice';
 
 interface InputBoxProps {
     hint1: string;
@@ -72,6 +73,10 @@ const InputBox: React.FC<InputBoxProps> = ({ hint1, hint2, attach, submit }) => 
           prompt: {
             id: promptID, 
             version: promptVersion
+          }, 
+          languageModel: {
+            modelProvider: PostedLanguageModelModelProvider.Anthropic,
+            modelResource: "claude-3-5-sonnet-20240620"
           }
         }).then(async (response) => {
           console.log(response.id)
