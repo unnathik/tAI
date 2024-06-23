@@ -30,19 +30,7 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
   const [trackedFaces, setTrackedFaces] = useState<TrackedFace[]>([]);
   const [emotions, setEmotions] = useState<Emotion[]>([]);
   const [status, setStatus] = useState("");
-  const numLoaderLevels = 5;
   const maxReconnects = 3;
-  const loaderNames: EmotionName[] = [
-    "Calmness",
-    "Joy",
-    "Amusement",
-    "Anger",
-    "Confusion",
-    "Disgust",
-    "Sadness",
-    "Horror",
-    "Surprise (negative)",
-  ];
 
   useEffect(() => {
     console.log("Mounting component");
