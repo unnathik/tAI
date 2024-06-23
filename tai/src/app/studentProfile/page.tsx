@@ -6,6 +6,19 @@ import ProgressChart from '../component/ProgressChart';
 import ImprovementChart from '../component/ImprovementChart';
 import ActivityChart from '../component/ActivityChart';
 import EmotionsDisplay from '../component/EmotionsChart';
+import { motion } from 'framer-motion';
+
+const pageVariants = {
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 }
+};
+
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.5
+};
 
 const StudentProfile = () => {
   const router = useRouter();
@@ -74,6 +87,13 @@ const StudentProfile = () => {
   }
 
   return (
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
     <div className="h-screen w-full flex flex-col bg-teal-100 overflow-hidden">
       <Navbar student={true}/>
       <div className="flex-grow overflow-y-auto">
@@ -110,6 +130,7 @@ const StudentProfile = () => {
         </div>
       </div>
     </div>
+    </motion.div>
   );
 };
 

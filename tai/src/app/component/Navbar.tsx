@@ -29,15 +29,15 @@ const Navbar: React.FC<NavBarProps> = ({ student}) => {
         <div className="flex space-x-4">
           {student && (
               <>
-                <button className="px-4 py-2 bg-blue-800 hover:bg-gray-700 hover:text-gray-300 text-sky-50 rounded-md" onClick={() => handleNavigation('/studentDashboard')}>Dashboard</button>
-                <button className="px-4 py-2 bg-blue-800 hover:bg-gray-700 hover:text-gray-300 text-white rounded-md" onClick={() => handleNavigation('/studentProfile')}>Profile</button>
-          <button className="px-4 py-2 bg-blue-800 hover:bg-gray-700 hover:text-gray-300 text-sky-50 rounded-md" onClick={() => handleNavigation('/studentLogin')}>Logout</button>
+                <button className="px-4 py-2 bg-blue-800 hover:text-gray-400 text-sky-50 rounded-md" onClick={() => handleNavigation('/studentDashboard')}>Dashboard</button>
+                <button className="px-4 py-2 bg-blue-800 hover:text-gray-400 text-white rounded-md" onClick={() => handleNavigation('/studentProfile')}>Profile</button>
+          <button className="px-4 py-2 bg-blue-800 hover:text-gray-400 text-sky-50 rounded-md" onClick={() => handleNavigation('/studentLogin')}>Logout</button>
               </>
             )}
           {!student && (
               <>
-                <button className="px-4 py-2 bg-blue-800 hover:bg-gray-700 hover:text-gray-300 text-sky-50 rounded-md" onClick={() => handleNavigation('/teacherDashboard')}>Dashboard</button>
-                <button className="px-4 py-2 bg-blue-800 hover:bg-gray-700 hover:text-gray-300 text-sky-50 rounded-md" onClick={() => handleNavigation('/teacherLogin')}>Logout</button>
+                <button className="px-4 py-2 bg-blue-800 hover:text-gray-400 text-sky-50 rounded-md" onClick={() => handleNavigation('/teacherDashboard')}>Dashboard</button>
+                <button className="px-4 py-2 bg-blue-800 hover:text-gray-400 text-sky-50 rounded-md" onClick={() => handleNavigation('/teacherLogin')}>Logout</button>
               </>
             )}
           <Image 

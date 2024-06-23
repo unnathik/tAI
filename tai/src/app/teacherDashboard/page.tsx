@@ -13,6 +13,19 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { HumeClient } from "hume";
 import { FaWandMagicSparkles } from "react-icons/fa6";
 import Navbar from '../component/Navbar';
+import { motion } from 'framer-motion';
+
+const pageVariants = {
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 }
+};
+
+const pageTransition = {
+    type: "tween",
+    ease: "anticipate",
+    duration: 0.5
+};
 
 
 export interface TeachingAssistant {
@@ -44,6 +57,13 @@ const TeacherDashboard = () => {
   }, []); 
 
   return (
+    <motion.div
+      initial="initial"
+      animate="in"
+      exit="out"
+      variants={pageVariants}
+      transition={pageTransition}
+    >
     <div className="h-full bg-sky-100 ">
       <Navbar student={false}/>
       <div className="flex flex-col justify-center">
@@ -109,6 +129,7 @@ const TeacherDashboard = () => {
         </div>
       </div> 
     </div>
+    </motion.div>
   );
 };
 
