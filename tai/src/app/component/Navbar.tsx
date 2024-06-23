@@ -21,12 +21,12 @@ const Navbar: React.FC = () => {
                 height={40} 
                 className="rounded-full" 
             />
-            <span className="ml-2 text-gray-800 font-bold text-xl">AI Tutor</span>
+            <span className="ml-2 text-gray-800 hover:text-gray-300 font-bold text-xl">AI Tutor</span>
         </div>
         <div className="flex space-x-4">
-          <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={() => handleNavigation('/studentDashboard')}>Dashboard</button>
-          <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={() => handleNavigation('/studentProfile')}>Profile</button>
-          <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={() => handleNavigation('/studentLogin')}>Logout</button>
+          <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 hover:text-gray-300 text-white rounded-md" onClick={() => handleNavigation('/studentDashboard')}>Dashboard</button>
+          <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 hover:text-gray-300 text-white rounded-md" onClick={() => handleNavigation('/studentProfile')}>Profile</button>
+          <button className="px-4 py-2 bg-gray-800 hover:bg-gray-700 hover:text-gray-300 text-white rounded-md" onClick={() => handleNavigation('/studentLogin')}>Logout</button>
           <Image 
                 src="/assets/pfp.png" 
                 alt="Logo" 
