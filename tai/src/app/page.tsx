@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation'; 
 import Image from 'next/image';
-// import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const InitialLoginPage = () => {
     const router = useRouter();
@@ -27,14 +27,14 @@ const InitialLoginPage = () => {
   };
 
     return (
-      // <AnimatePresence>
-      // <motion.div
-      //       initial="initial"
-      //       animate="in"
-      //       exit="out"
-      //       variants={pageVariants}
-      //       transition={pageTransition}
-      // >
+    <AnimatePresence>
+      <motion.div
+        initial="initial"
+        animate="in"
+        exit="out"
+        variants={pageVariants}
+        transition={pageTransition}
+      >
         <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
             <div className="h-1/2 flex flex-col p-4 justify-center">
                 <div className="flex-grow flex p-4 bg-four rounded-3xl w-1/3 mx-auto shadow-lg bg-white">
@@ -76,8 +76,8 @@ const InitialLoginPage = () => {
                 </div>
             </div>
         </div>
-      // </motion.div>
-      // </AnimatePresence>
+      </motion.div>
+    </AnimatePresence>
     );
 };
 

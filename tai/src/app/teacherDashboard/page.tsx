@@ -60,7 +60,7 @@ const TeacherDashboard = () => {
                     <div className="flex flex-col justify-center">
                       <div className="flex">
                         <BiSolidSchool size={28} color='#3b82f6'/>
-                        <h2 className="text-xl justify-center font-bold mb-2 pl-2 text-blue-500">University of California Berkeley</h2>
+                        <h2 className="text-xl justify-center font-bold mb-2 pl-2 text-blue-500">University of California, Berkeley</h2>
                       </div>
                       <p className='text-black'>Welcome back, Unnathi!</p>
                       <p className='text-black'>Course Assignment(s): CS1331 (Intro to Object-Oriented Programming in Java).</p>
