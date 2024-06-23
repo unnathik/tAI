@@ -25,8 +25,8 @@ const InputBox: React.FC<InputBoxProps> = ({ hint1, hint2, attach, submit }) => 
   };
 
   return (
-    <div>
-      <div className="items-center border border-gray-300 rounded-lg p-2 w-full bg-white relative h-12">
+    <div className='mb-4'>
+      <div className="items-center border border-gray-300 rounded-lg p-2 w-full bg-white relative h-12 mb-1">
         <textarea
           placeholder={hint1}
           className="border-none focus:outline-none text-black w-full placeholder-gray-400 h-full"
@@ -34,7 +34,7 @@ const InputBox: React.FC<InputBoxProps> = ({ hint1, hint2, attach, submit }) => 
           onChange={(e) => setTextValue1(e.target.value)}
         ></textarea>
       </div>
-      <div className="items-center border border-gray-300 rounded-lg p-2 w-full bg-white relative h-18">
+      <div className="items-center border border-gray-300 rounded-lg p-2 w-full bg-white relative h-24">
         <textarea
           placeholder={hint2}
           className="border-none focus:outline-none text-black w-full placeholder-gray-400 h-full"
