@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMicrophone} from '@fortawesome/free-solid-svg-icons';
 import {faVideo} from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,8 @@ import { VoiceProvider, useVoice } from '@humeai/voice-react';
 import ClientComponent from '@/components/widgets/ClientComponent';
 import Controls from '@/components/widgets/Controls';
 import Messages from '@/components/widgets/Messages';
+import { collection, getDocs, query } from 'firebase/firestore';
+import { firestore } from '../firebase';
 import {FaceWidgets} from '@/components/widgets/FaceWidgets';
 
 interface Message {
@@ -21,6 +23,8 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
   const [chatMessages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [isMicrophoneOn, setMicrophoneOn] = useState(false)
+
+  const [configIds, setConfigIds] = useState<Map<string, string>>(new Map());
   const [isVideoOn, setVideoOn] = useState(false)
   
   const handleVideoRecording = () => {
@@ -54,11 +58,28 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
     setMicrophoneOn(!isMicrophoneOn)
   }
 
+  useEffect(() => {
+    const fetchConfigIDs = async () => {
+      const q = query(collection(firestore, 'teaching_assistants'));
+      const querySnapshot = await getDocs(q);
+
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data().title)
+        console.log(doc.data().configID)
+        setConfigIds(new Map(configIds.set(doc.data().title, doc.data().configID)))
+      });
+
+      console.log(configIds)
+    };
+
+    fetchConfigIDs();
+  }, []); 
+
   return (
     <div className="flex flex-col w-8/12 h-5/6 border-2 rounded-md overflow-hidden">
       <div className="bg-sky-400 text-white p-2.5 text-center">TA: {topic}</div>
       {isMicrophoneOn && <div className='flex flex-col flex-1 p-2.5 overflow-y-scroll'> 
-      <VoiceProvider auth={{ type: "apiKey", value: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM" }}>
+      <VoiceProvider auth={{ type: "apiKey", value: "lOJAfmzwXjazWVwGA5fsjulJjjg5Fy8Cb8di5KulEN2utaex" }} configId={configIds.get(topic)} configVersion={0}>
       <Messages />
       <Controls />
       </VoiceProvider>
