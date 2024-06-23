@@ -25,6 +25,7 @@ const Navbar: React.FC = () => {
         </div>
         <div className="flex space-x-4">
           <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={() => handleNavigation('/studentDashboard')}>Dashboard</button>
+          <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={() => handleNavigation('/studentProfile')}>Profile</button>
           <button className="px-4 py-2 bg-gray-800 text-white rounded-md" onClick={() => handleNavigation('/studentLogin')}>Logout</button>
           <Image 
                 src="/assets/pfp.png" 
