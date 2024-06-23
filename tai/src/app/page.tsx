@@ -18,7 +18,7 @@ const InitialLoginPage = () => {
       in: { opacity: 1 },
       out: { opacity: 0 }
   };
-  
+
   const pageTransition = {
       type: "tween",
       ease: "anticipate",
