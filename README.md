@@ -29,7 +29,7 @@ Additionally, building a clean UI/UX and a simple user flow was one of the most 
 - UI: our user interface is meant to be easy to navigate, self explanatory, and well-suited to schools. We believe that we ticked all of those boxes. 
 
 ## What we learned
-- About Hume AI's Technologies: Hume AI's APIs provided us with some incredibly rich emotional insights that would be valuable in many projects involving sentiment analysis. It was great to learn how to use Hume AI's technologies! 
+- About Hume AI's Technologies: Hume AI's APIs provided us with some incredibly rich emotional insights that would be valuable in many projects involving sentiment analysis. It was great to learn how to use Hume AI's technologies! A big shoutout to their team and their examples repository in helping us getting started :) 
 - Using Next.js: We had never coded with Next.js before, so it was interesting getting to learn a different JS framework.  
 
 ## What's next for tAI: Personalized Teaching Assistant
