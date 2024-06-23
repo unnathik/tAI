@@ -10,7 +10,10 @@ export default function Controls() {
         onClick={() => {
           messages.map((msg, index) => {
             if (msg.type === "user_message") {
-              userEmotions.push(msg.models.prosody?.scores)
+              userEmotions.push({
+                emotionScores: msg.models.prosody?.scores,
+                userMessage: msg.message.content
+              });
             }
           })
 

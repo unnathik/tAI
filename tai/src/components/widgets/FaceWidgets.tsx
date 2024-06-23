@@ -31,12 +31,33 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
   const [emotions, setEmotions] = useState<Emotion[]>([]);
   const [status, setStatus] = useState("");
   const maxReconnects = 3;
+  const [emotionData, setEmotionData] = useState<Emotion[]>([]);
+  const [isStreaming, setIsStreaming] = useState(false);
 
   useEffect(() => {
     console.log("Mounting component");
     mountRef.current = true;
     console.log("Connecting to server");
     connect();
+    let frameCount = 0;
+    const resetInterval = 300;
+
+    const logAverageEmotions = () => {
+      frameCount++;
+      if (frameCount === resetInterval) {
+        const averageEmotions = calculateAverageEmotions(emotionData);
+        if (averageEmotions.length > 0) {
+          console.log('Average emotions for the last 300 frames:', averageEmotions);
+        } else {
+          console.log('No emotions to average');
+        }
+        setEmotionData([]); // Reset emotionData
+        frameCount = 0; // Reset frame count
+      }
+      requestAnimationFrame(logAverageEmotions);
+    };
+  
+    requestAnimationFrame(logAverageEmotions);
 
     return () => {
       console.log("Tearing down component");
@@ -49,10 +70,40 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
     };
   
     useEffect(() => {
-      logEmotions(emotions);
-    }, [emotions]);
+      // logEmotions(emotions);
+      emotions.forEach(emotion => {
+        emotionData.push(emotion);
+      })
+      // console.log('Emotion data:')
+      // console.log(emotionData)
+    }, [emotions]); 
 
-  function connect() {
+    const calculateAverageEmotions = (data: Emotion[]): Emotion[] => {
+      const scores: { [key in EmotionName]?: number } = {};
+      const counts: { [key in EmotionName]?: number } = {};
+  
+      data.forEach((emotion) => {
+          const emotionName = emotion.name;
+          if (scores[emotionName]) {
+              scores[emotionName] += emotion.score;
+              counts[emotionName]! += 1;
+          } else {
+              scores[emotionName] = emotion.score;
+              counts[emotionName] = 1;
+          }
+      });
+  
+      const averages: Emotion[] = [];
+      Object.keys(scores).forEach((emotion) => {
+          averages.push({
+              name: emotion as EmotionName,
+              score: scores[emotion as EmotionName]! / counts[emotion as EmotionName]!,
+          });
+      });
+      return averages;
+    };
+
+    function connect() {
     const socket = socketRef.current;
     if (socket && socket.readyState === WebSocket.OPEN) {
       console.log("Socket already exists, will not create");
@@ -88,7 +139,7 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
   async function socketOnMessage(event: MessageEvent) {
     setStatus("");
     const response = JSON.parse(event.data);
-    console.log("Got response", response);
+    // console.log("Got response", response);
     const predictions: FacePrediction[] = response.face?.predictions || [];
     const warning = response.face?.warning || "";
     const error = response.error;
@@ -113,6 +164,8 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
         if (onCalibrate) {
           onCalibrate(newEmotions);
         }
+        // setEmotionData((prevData) => [...prevData, pred.emotions]);
+        // setEmotionData((prevData) => [...prevData, newEmotions]);
       }
     });
     setTrackedFaces(newTrackedFaces);
