@@ -24,7 +24,7 @@ const StudentLoginPage = () => {
         //     variants={pageVariants}
         //     transition={pageTransition}
         // >
-        <div className='h-screen w-full justify-center flex flex-col bg-teal-100'>
+        <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
         <div className="h-1/2 flex flex-col px-4 py-4 justify-center">
             {/* Navbar */}
             {/* Main content */}
