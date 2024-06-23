@@ -111,7 +111,7 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
       {isVideoOn && (
         <div className="video h-100 w-full">
           <div className="videostuff flex flex-1 p-2.5 max-h-[25vh] overflow-auto items-center justify-center">
-            <FaceWidgets />
+            <FaceWidgets topic={topic} />
           </div>
         </div>
       )}
