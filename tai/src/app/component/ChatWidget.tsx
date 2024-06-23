@@ -16,15 +16,23 @@ interface Message {
 }
 type AppProps = {
     topic: string;
+    refresh: boolean;
 }
 
-const ChatWidget: React.FC<AppProps> = ({topic}) => {
+const ChatWidget: React.FC<AppProps> = ({topic, refresh}) => {
   const [chatMessages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [isMicrophoneOn, setMicrophoneOn] = useState(false)
 
   const [configIds, setConfigIds] = useState<Map<string, string>>(new Map());
   const [isVideoOn, setVideoOn] = useState(false)
+
+  if (refresh && (isMicrophoneOn || isVideoOn || chatMessages.length > 0)) {
+    setMicrophoneOn(false);
+    setMessages([]);
+    setVideoOn(false);
+    console.log('reset')
+  }
   
   const handleVideoRecording = () => {
     // voice recording
@@ -79,8 +87,8 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
       <div className="bg-sky-400 text-white p-2.5 text-center">TA: {topic}</div>
       {isMicrophoneOn && <div className='flex flex-col flex-1 p-2.5 overflow-y-scroll'> 
       <VoiceProvider auth={{ type: "apiKey", value: "lOJAfmzwXjazWVwGA5fsjulJjjg5Fy8Cb8di5KulEN2utaex" }} configId={configIds.get(topic)} configVersion={0}>
-      <Messages />
-      <Controls />
+        <Messages />
+        <Controls />
       </VoiceProvider>
       </div>}
       {!isMicrophoneOn && <div className="flex flex-col flex-1 p-2.5 overflow-y-scroll">

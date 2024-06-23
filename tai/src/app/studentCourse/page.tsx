@@ -72,6 +72,7 @@ const StudentCourse = () => {
     const searchParams = useSearchParams();
     const [code, setCode] = useState('');
     const [currentTopic, setCurrentTopic] = useState('');
+    const [refreshChat, setRefreshChat] = useState(false);
 
     useEffect(() => {
         if (isDataFetched) {
@@ -88,7 +89,13 @@ const StudentCourse = () => {
 
     const handleCurrentTopic = (topic: string) => {
         setCurrentTopic(topic);
+        setRefreshChat(true);
     }
+
+    useEffect(() => {
+        if (refreshChat)
+            setRefreshChat(false);
+    }, [refreshChat]);
 
     return (
         <div className='h-screen w-full justify-center flex flex-col bg-sky-100'>
@@ -103,7 +110,7 @@ const StudentCourse = () => {
                     currentTopic={currentTopic}
                 />
                 <div className="w-4"></div>
-                <ChatWidget topic={currentTopic} />
+                <ChatWidget topic={currentTopic} refresh={refreshChat} />
                     {/* <VideoWidget topic={currentTopic} /> */}
                 </div>
             </div>
