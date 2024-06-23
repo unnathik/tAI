@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import ChatWidget from '../component/ChatWidget';
 import CourseInfoBox from '../component/CourseInfoBox';
-import { Checkbox } from "@material-tailwind/react";
 import Navbar from '../component/Navbar';
 
 
@@ -54,7 +53,7 @@ const StudentCourse = () => {
         setCurrentTopic(topicsDict[codeParam][0]);
     }, [pathname, searchParams]);
 
-    const handleCurrentTopic = (topic) => {
+    const handleCurrentTopic = (topic: string) => {
         setCurrentTopic(topic);
     }
 
