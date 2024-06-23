@@ -40,7 +40,8 @@ const Login: React.FC<AppProps> = ({route}) => {
                                 </svg>
                             </div>
                             <input type="email" name="email" id="email" placeholder="johndoe@bcg.org" required 
-                                className="pl-10 pr-4 bg-gray-100 border border-gray-300 text-black text-base rounded-lg focus:ring-black focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                className="pl-10 pr-4 bg-gray-100 border border-gray-300 text-black text-base rounded-lg focus:ring-black focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            />
                         </div>
 
                         {/* Password field */}
@@ -70,14 +71,14 @@ const Login: React.FC<AppProps> = ({route}) => {
                         )}
 
                         <div className="flex:grow flex flex-row items-center h-full justify-center">
-                            <button type="submit" className="text-white text-base w-fit py-3 px-16 rounded-full bg-one hover:bg-two/[0.5] border-2 border-white">
+                            <button type="submit" className="text-white text-base w-fit py-3 px-16 rounded-full bg-blue-500 hover:bg-blue-400 border-white border-2 shadow-lg">
                                 {isRegistering ? 'Register' : 'Log in'}
                             </button>
                         </div>
 
                         {!isRegistering && (
                             <div className="flex:grow flex flex-row items-center h-full justify-center">
-                                <button type="button" onClick={toggleRegister} className="text-white text-base w-fit py-3 px-16 rounded-full bg-two hover:bg-two/[0.8] border-white border-2 shadow-lg">
+                                <button type="button" onClick={toggleRegister} className="text-white text-base w-fit py-3 px-16 rounded-full bg-blue-500 hover:bg-blue-400 border-white border-2 shadow-lg">
                                     Register
                                 </button>
                             </div>
@@ -85,7 +86,7 @@ const Login: React.FC<AppProps> = ({route}) => {
 
                         {isRegistering && (
                             <div className="flex:grow flex flex-row items-center h-full justify-center">
-                                <button type="button" onClick={toggleRegister} className="text-white text-base w-fit py-3 px-16 rounded-full bg-two hover:bg-two/[0.5] border-2 border-white">
+                                <button type="button" onClick={toggleRegister} className="text-white text-base w-fit py-3 px-16 rounded-full bg-blue-500 hover:bg-blue-400 border-white border-2 shadow-lg">
                                     Back to Login
                                 </button>
                             </div>
