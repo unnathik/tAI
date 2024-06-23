@@ -6,13 +6,12 @@ export default function Messages() {
   console.log(messages)
 
   return (
-    <div>
+    <div className="chat-messages">
       {messages.map((msg, index) => {
         if (msg.type === "user_message" || msg.type === "assistant_message") {
           return (
-            <div key={msg.type + index}>
-              <div>{msg.message.role}</div>
-              <div>{msg.message.content}</div>
+            <div key={msg.type + index} className={`chat-message ${msg.type.includes("user") ? "user" : "bot"}`}>
+              {msg.message.content}
             </div>
           );
         }

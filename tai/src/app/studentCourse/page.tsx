@@ -3,6 +3,9 @@ import { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import ChatWidget from '../component/ChatWidget';
 import { Checkbox } from "@material-tailwind/react";
+import { collection, getDoc, getDocs, query } from 'firebase/firestore';
+import { firestore } from '../firebase';
+import { TeachingAssistant } from '../teacherDashboard/page';
 
 type CourseDict = {
     [key: string]: string;
@@ -12,6 +15,7 @@ courseDict['HIST 101'] = 'Topics in World History: Cultural History of Food in A
 courseDict['PHYSICS 1B'] = 'Oscillations, Waves, Electric and Magnetic Fields';
 courseDict['GERMAN 2'] = 'Elementary German';
 courseDict['MATH 132'] = 'Complex Analysis for Applications';
+courseDict['CS 1331'] = 'Intro to Object-Oriented Programming with Java';
 
 type TopicsDict = {
     [key: string]: string[];
@@ -36,21 +40,46 @@ topicsDict['MATH 132'] = [
     'Harmonic Functions'
 ];
 
-
-
 const StudentCourse = () => {
+    const [isDataFetched, setIsDataFetched] = useState<boolean>(false);
+
+    useEffect(() => {
+        const fetchTeachingAssistants = async () => {
+          const q = query(collection(firestore, 'teaching_assistants'));
+          const querySnapshot = await getDocs(q);
+    
+          const fetchedTeachingAssistants: string[] = [];
+    
+          querySnapshot.forEach((doc) => {
+            fetchedTeachingAssistants.push(doc.data().title);
+          });
+
+          console.info("reached")
+    
+          topicsDict['CS 1331'] = fetchedTeachingAssistants
+          setIsDataFetched(true)
+        };
+    
+        fetchTeachingAssistants();
+      }, []); 
+
     const pathname = usePathname();
     const searchParams = useSearchParams();
     const [code, setCode] = useState('');
     const [currentTopic, setCurrentTopic] = useState('');
 
     useEffect(() => {
-        const searchParamString = `${searchParams}`;
-        const codeParam = searchParamString.replace(/(code=)/g, '').replace(/(\+)/g, ' ');
-        // console.log(codeParam);
-        setCode(codeParam);
-        setCurrentTopic(topicsDict[codeParam][0]);
-    }, [pathname, searchParams]);
+        if (isDataFetched) {
+            const searchParamString = `${searchParams}`;
+        
+            const codeParam = searchParamString.replace(/(code=)/g, '').replace(/(\+)/g, ' ');
+            console.info(topicsDict[codeParam])
+    
+            // console.log(codeParam);
+            setCode(codeParam);
+            setCurrentTopic(topicsDict[codeParam][0]);
+        }
+    }, [pathname, searchParams, isDataFetched]);
 
     type CourseInfoBoxProps = {
         code: string;
