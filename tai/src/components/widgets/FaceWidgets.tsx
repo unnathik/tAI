@@ -3,7 +3,6 @@
 import { Emotion, EmotionName } from "../../lib/data/emotion";
 import { None, Optional } from "../../lib/utilities/typeUtilities";
 import { useContext, useEffect, useRef, useState } from "react";
-
 import { AuthContext } from "../../AuthContext";
 import { Descriptor } from "./Descriptor";
 import { FacePrediction } from "@/lib/data/facePrediction";
@@ -14,12 +13,16 @@ import { TrackedFace } from "@/lib/data/trackedFace";
 import { VideoRecorder } from "@/lib/media/videoRecorder";
 import { blobToBase64 } from "@/lib/utilities/blobUtilities";
 import { getApiUrlWs } from "@/lib/utilities/environmentUtilities";
+import { firestore } from "../../app/firebase";
+import { collection, query, where, getDocs, setDoc, doc, updateDoc } from "firebase/firestore";
+import { HumeClient } from 'hume';
 
 type FaceWidgetsProps = {
   onCalibrate: Optional<(emotions: Emotion[]) => void>;
+  topic: string;
 };
 
-export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
+export function FaceWidgets({ onCalibrate, topic}: FaceWidgetsProps) {
   const authContext = useContext(AuthContext);
   const socketRef = useRef<WebSocket | null>(null);
   const recorderRef = useRef<VideoRecorder | null>(null);
@@ -32,7 +35,7 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
   const [status, setStatus] = useState("");
   const maxReconnects = 3;
   const [emotionData, setEmotionData] = useState<Emotion[]>([]);
-  const [finalEmotionData, setFinalEmotionData] = useState<Emotion[][]>([]);
+  const [finalEmotionData, setFinalEmotionData] = useState<Emotion[]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
 
   useEffect(() => {
@@ -47,7 +50,9 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
       frameCount++;
       if (frameCount % resetInterval === 0) {
         const averageEmotions = calculateAverageEmotions(emotionData);
-        finalEmotionData.push(averageEmotions)
+        emotionData.forEach((emotion) => {
+          finalEmotionData.push(emotion);
+      });
         if (averageEmotions.length > 0) {
           console.log('Average emotions for the last 1200 frames:', averageEmotions);
           // console.log('Final emotions:', finalEmotionData);
@@ -219,6 +224,22 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
     } else {
       console.warn("Could not stop recorder, not initialized yet");
     }
+    emotionsSave()
+  }
+
+  async function emotionsSave() {
+    console.log(topic)
+    console.log(finalEmotionData)
+    // const emotionDataObject = {
+    //   data: finalEmotionData.map((row) => ({ values: row })),
+    // };
+    console.log("Final Emotions Data: ", finalEmotionData)
+    if (finalEmotionData.length > 0) {
+      await updateDoc(doc(firestore, "teaching_assistants", topic), {
+        emotionData: finalEmotionData
+      })
+      console.log('set file successfully')
+    }
     setFinalEmotionData([]); 
   }
 
@@ -302,4 +323,5 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
 
 FaceWidgets.defaultProps = {
   onCalibrate: None,
+  topic: "",
 };

@@ -10,6 +10,12 @@ type CourseInfoBoxProps = {
 }
 
 const CourseInfoBox: React.FC<CourseInfoBoxProps> = ({ code, topicsDict, courseDict, onTopicChange, currentTopic}) => {
+    const [checkedTopic, setCheckedTopic] = React.useState(currentTopic);
+    const handleCheckboxChange = (topic: string) => {
+        setCheckedTopic(topic);
+        onTopicChange(topic);
+    };
+    
     return (
         <div className='rounded-md bg-gray-300 p-4 w-3/12 h-5/6 relative text-center'>
             <h2 className='font-bold items-center justify-center '>{code}</h2>
