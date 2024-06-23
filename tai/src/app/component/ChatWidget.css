@@ -1,8 +1,9 @@
 .chat-widget {
     display: flex;
     flex-direction: column;
-    width: 400px;
-    height: 400px;
+    width: 600px;
+    height: 500px;
+    margin-left: 200px;
     border: 1px solid #ccc;
     border-radius: 8px;
     overflow: hidden;
@@ -18,11 +19,10 @@
   .chat-messages {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     flex: 1;
     padding: 10px;
-    overflow-y: auto;
-
+    overflow-y: scroll;
   }
   
   .chat-message {
@@ -56,7 +56,7 @@
     margin-right: 10px;
   }
   
-  .chat-input button {
+  .send-button {
     padding: 10px 20px;
     border: none;
     background-color: #007bff;
@@ -65,7 +65,19 @@
     cursor: pointer;
   }
   
-  .chat-input button:hover {
+  .send-button:hover {
     background-color: #0056b3;
+  }
+
+  .voice-button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: rgb(157, 157, 157);
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    align-self: center;
   }
   
