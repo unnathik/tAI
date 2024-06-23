@@ -37,7 +37,7 @@ const StudentLoginPage = () => {
                         <div className='flex justify-center flex-col items-center'>
                         </div>
                         <text>Student</text>
-                        <Login route='/teacher-dashboard' className='w-full'/>
+                        <Login route='/teacherDashboard' className='w-full'/>
                     </div>
                     <div className="flex-grow"></div> {/* Blank space below */}
                 </div>
