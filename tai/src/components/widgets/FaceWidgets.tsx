@@ -32,6 +32,7 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
   const [status, setStatus] = useState("");
   const maxReconnects = 3;
   const [emotionData, setEmotionData] = useState<Emotion[]>([]);
+  const [finalEmotionData, setFinalEmotionData] = useState<Emotion[][]>([]);
   const [isStreaming, setIsStreaming] = useState(false);
 
   useEffect(() => {
@@ -40,14 +41,16 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
     console.log("Connecting to server");
     connect();
     let frameCount = 0;
-    const resetInterval = 300;
+    const resetInterval = 1200;
 
     const logAverageEmotions = () => {
       frameCount++;
-      if (frameCount === resetInterval) {
+      if (frameCount % resetInterval === 0) {
         const averageEmotions = calculateAverageEmotions(emotionData);
+        finalEmotionData.push(averageEmotions)
         if (averageEmotions.length > 0) {
-          console.log('Average emotions for the last 300 frames:', averageEmotions);
+          console.log('Average emotions for the last 1200 frames:', averageEmotions);
+          // console.log('Final emotions:', finalEmotionData);
         } else {
           console.log('No emotions to average');
         }
@@ -216,6 +219,7 @@ export function FaceWidgets({ onCalibrate }: FaceWidgetsProps) {
     } else {
       console.warn("Could not stop recorder, not initialized yet");
     }
+    setFinalEmotionData([]); 
   }
 
   async function onVideoReady(videoElement: HTMLVideoElement) {
