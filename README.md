@@ -1,1 +1,43 @@
-# tai
+# tAI: Your AI Teaching Assistant
+tAI is a personalized AI teaching assistant that facilitates multimodal & empathetic education for students and provides professors with actionable insights on their students' engagement & learning.
+## Inspiration
+Imagine having to wait 7 hours to receive any kind of personalised assistance when learning a new concept. Sounds like a suboptimal use of time, right? Well, it's the reality of modern educational institutions. With the size of modern university courses growing, it is becoming more and more difficult for students to receive 1-on-1 help. Professors can only help so many students in their limited office hours and TAs can only spend so much time helping other students before the workload gets to them. Due to this, the teaching staff struggles to understand how well students are engaging with the course material. As a team of 4 undergraduate students with one of us having served as a TA for 2 semesters, we've seen these problems in teaching up close from both ends of the spectrum. 
+
+To solve these problems, we propose tAI. tAI, as a personalised teaching assistant, solves problems for all parties simultaneously: it tackles TA availability and workload, provides personalised guidance to students in an empathetic manner, and shares actionable insights with professors on their strengths and weaknesses with respect to student engagement and understanding of course material. tAI, as opposed to other AI-enabled teaching assistants out there, recognises that not everyone learns through text. There is so much more that can be captured through audio and video that is forgone in current AI tutor interactions. We aim to keep the AI-enabled teaching assistant as close to the real thing--and maybe even better. 
+
+## What it does
+tAI is more than just an AI-powered learning assistant that throws facts at you when you're confused; powered by generative AI that accounts for , it's multimodal, empathetic, and context-aware. Your professors are still in control of what you learn. Here's how it works: 
+1. **Custom TA Creation**: teachers can create custom teaching assistants on the fly. They can input the topic they would like the TA to focus on, specify any custom instructions (like making the AI do more of the explaining than the students, specifying areas of focus in the TA, and creating guardrails on topics of conversations), and upload any files they want to make available to students with that TA. Then, voila! We generate a customised teaching assistant  powered by Anthropic's state-of-the-art Claude-3.5 Sonnet, which is proven to have [excellent undergraduate level knowledge](https://www.anthropic.com/news/claude-3-5-sonnet). 
+2. **Multimodal tAI Interaction**: once teachers have generated a TA on a particular topic for their class, students can interact with these TAs on their portal. You can choose how you want to interact with the TA--do you want to text, talk, enact, or do a little bit of all of them? With support for text chat, audio chat, and video input, students are in control of how they want to learn. tAI is flexible and is here to support students in the best ways possible. 
+3. **Empathetic tAI**: tAI is trained to constantly pick up on emotional cues in all forms of input. If you seem disinterested or frustrated, it will cheer you up. If you seem confused or lost, it will check in on you. If you seem excited or confident, it will join you in your enthusiasm--_just as a human TA would_. This ensures that the AI-powered TA experience seems as personable as possible. 
+4. **Actionable Insights for Teachers**: after students complete sessions with a particular TA, we aggregate emotional and interaction data across students to generate comprehensive insights on class-wide student engagement and understanding on a particular topic or set of topics. We enable teachers to understand which topics might need follow-up in lecture, promoting a flipped classroom structure, which topics students seem confident in, and which topics could be emphasised in future practice. This also encourages professors to track learning engagement beyond test scores. Furthermore, we provide teachers with chat summaries across all chats. This allows them to review any inconsistencies and inform us about any hallucinations in the generated teaching assistants, tackling one of the key problems faced by generative AI assistants today. 
+5. **Data-Driven Insights for Students**: to encourage reflection and better preparation for tests, we provide students with insights on which topics they seem to have struggled with the most. We also provide students with metrics on their improvement over time (if sufficient data points are available) to positively reinforce their behaviour. 
+
+## How we built it
+tAI was built using the Next.js framework (with TypeScript), Hume AI, Firebase Firestore, and OpenAI. We leveraged Hume AI's Empathic Voice Interface API to create the empathetic teaching assistants and derive insights on the student's emotions expressed via voice. We utilised Hume AI's Expression Measurement API to conduct real-time analysis of facial expressions, including subtle facial movements, to include in our emotional analysis of students. We used OpenAI's GPT-4 model to create chat summaries for students. We used Firebase Firestore to store data. 
+
+## Challenges we ran into
+Since our project utilises various APIs, including Hume AI API, OpenAI APIs, and the Firebase APIs, it was challenging to manage all of those calls to external code in a consistent manner. 
+
+Furthermore, integrating multimodal communication forms was one of the most challenging aspects of the project, as we needed to make a seamless user experience for deciding which mode to communicate with. Finally, we were able to make a single interface for communicating with the model and perform emotional analysis on all forms of input. 
+
+Additionally, building a clean UI/UX and a simple user flow was one of the most time-intensive elements of the application but also one of the most critical to enable students and teachers to leverage our resources. 
+
+## Accomplishments that we're proud of
+- End-to-End Support for Teaching and Learning: our solution caters to both teachers and students, as opposed to many other AI + education solutions that cater to only one or the other. We need solutions that bridge the gap between them instead of trying to replace the value in teachers, and tAI is one of those solutions. We were able to build an entire flow that connects teachers and students, leaving the instructional power in the teacher's hands but the personalisation power in the students'. 
+- Analytics for Professors: today, it's difficult for professors to account for student engagement and understanding of content before exams roll around. Test scores, however, have an impact on student futures, which is why it is important that professors have early information on student performance that they transform into actions for improvement. tAI enables this by providing emotional and interaction data to professors from student performance. 
+- UI: our user interface is meant to be easy to navigate, self explanatory, and well-suited to schools. We believe that we ticked all of those boxes. 
+
+## What we learned
+- About Hume AI's Technologies: Hume AI's APIs provided us with some incredibly rich emotional insights that would be valuable in many projects involving sentiment analysis. It was great to learn how to use Hume AI's technologies! 
+- Using Next.js: We had never coded with Next.js before, so it was interesting getting to learn a different JS framework.  
+
+## What's next for tAI: Personalized Teaching Assistant
+As we continue to innovate and evolve tAI, our vision extends beyond universities. We are excited to explore how tAI can be a valuable asset in other educational spaces, such as high schools, middle schools, and even independent learning platforms. Our upcoming enhancements will focus on broadening the application of tAI capabilities to support these diverse fields. Here is what we have in mind: 
+* Support for Math Packages like MathJax and LaTeX and OCR to enable better TAs for mathematics and physical sciences
+* Support for different world languages
+* Integrating support for internet resources
+* SSO for schools
+* Diagram generation: for mathematical visualizations in particular, we identify the manim animation engine, from the famous 3b1b visualizations, as a potential source of generating visualizations. We plan to fine-tune an open source LLM such as Code Llama on a dataset of natural language to manim code conversions, and then perform inference to generate the best code that fits the current concept being discussed. 
+
+Join us as we pave the way for a smarter, AI-driven ways of learning!
