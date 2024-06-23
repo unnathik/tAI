@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import ChatWidget from '../component/ChatWidget';
 import { Checkbox } from "@material-tailwind/react";
+import Navbar from '../component/Navbar';
+
 
 type CourseDict = {
     [key: string]: string;
@@ -86,6 +88,7 @@ const StudentCourse = () => {
 
     return (
         <div className='h-screen w-full justify-center flex flex-col bg-teal-100'>
+            <Navbar />
             <div className="h-5/6 flex flex-col px-4 py-4 justify-center">
                 <div className="flex-grow flex px-0 py-0 bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white">
                     <div className="flex-grow flex flex-row bg-four/[0.6] rounded-3xl mx-auto items-center p-4 h-[65vh]">
