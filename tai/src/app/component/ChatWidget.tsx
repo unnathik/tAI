@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faMicrophone} from '@fortawesome/free-solid-svg-icons';
+import {faVideo} from '@fortawesome/free-solid-svg-icons';
 import { VoiceProvider, useVoice } from '@humeai/voice-react';
 import ClientComponent from '@/components/widgets/ClientComponent';
 import Controls from '@/components/widgets/Controls';
 import Messages from '@/components/widgets/Messages';
+import {FaceWidgets} from '@/components/widgets/FaceWidgets';
 
 interface Message {
   id: number;
@@ -19,6 +21,13 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
   const [chatMessages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState<string>('');
   const [isMicrophoneOn, setMicrophoneOn] = useState(false)
+  const [isVideoOn, setVideoOn] = useState(false)
+  
+  const handleVideoRecording = () => {
+    // voice recording
+    console.log('begin video recording');
+    setVideoOn(!isVideoOn)
+  }
 
   const handleSendMessage = () => {
     if (input.trim()) {
@@ -46,13 +55,13 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
   }
 
   return (
-    <div className="flex flex-col w-[600px] h-[500px] ml-[200px] border-2 rounded-md overflow-hidden">
+    <div className="flex flex-col w-8/12 h-5/6 border-2 rounded-md overflow-hidden">
       <div className="bg-sky-400 text-white p-2.5 text-center">TA: {topic}</div>
       {isMicrophoneOn && <div className='flex flex-col flex-1 p-2.5 overflow-y-scroll'> 
       <VoiceProvider auth={{ type: "apiKey", value: "SX2EKyfkWOzEi7IUFQGrjne72UvWGWxLIurjITFW7w3AaZlM" }}>
       <Messages />
       <Controls />
-    </VoiceProvider>
+      </VoiceProvider>
       </div>}
       {!isMicrophoneOn && <div className="flex flex-col flex-1 p-2.5 overflow-y-scroll">
         {chatMessages.map((message) => (
@@ -61,20 +70,30 @@ const ChatWidget: React.FC<AppProps> = ({topic}) => {
           </div>
         ))}
       </div>}
-      <div className="chat-input">
+      <div className="chat-input p-2">
         <input
-          className="flex-1 p-2.5 border-2 rounded-md mr-2.5"
+          className="flex-1 border-2 rounded-md w-8/12"
           type="text"
           value={input}
           onChange={handleInputChange}
           onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
           placeholder="Type a message..."
         />
-        <button className="voice-button">
-        <FontAwesomeIcon color={isMicrophoneOn ? 'red' : 'black'} icon={faMicrophone} onClick={handleVoiceRecording} />
+        <button className="voice-button w-1/12">
+          <FontAwesomeIcon color={isMicrophoneOn ? 'red' : 'black'} icon={faMicrophone} onClick={handleVoiceRecording} />
         </button>
-        <button className="border-0 py-2.5 px-5 text-white rounded-md cursor-pointer bg-sky-400 hover:bg-sky-600" onClick={handleSendMessage}>Send</button>
+        <button className="video-button w-1/12">
+          <FontAwesomeIcon color={isVideoOn ? 'red' : 'black'} icon={faVideo} onClick={handleVideoRecording} />
+        </button>
+        <button className="border-0 text-white rounded-md cursor-pointer bg-sky-400 hover:bg-sky-600 w-2/12" onClick={handleSendMessage}>Send</button>
       </div>
+      {isVideoOn && (
+        <div className="video h-100 w-full">
+          <div className="videostuff flex flex-1 p-2.5 max-h-[25vh] overflow-auto items-center justify-center">
+            <FaceWidgets />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
