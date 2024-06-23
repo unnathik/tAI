@@ -63,7 +63,7 @@ const StudentProfile = () => {
 
   return (
     <div className="h-screen w-full flex flex-col bg-teal-100 overflow-hidden">
-      <Navbar />
+      <Navbar student={true}/>
       <div className="flex-grow overflow-y-auto">
         <div className="flex flex-col px-4 py-4">
           <div className="bg-four rounded-3xl w-11/12 mx-auto shadow-lg bg-white p-4">
